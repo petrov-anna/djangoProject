@@ -1,16 +1,31 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 
-<!--Login--> 
 <div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+    <h1>Авторизация</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ login_form.username.id_for_label }}">Имя пользователя: </label>
+            {{ login_form.username }}
+        </div>
+        {% if login_form.username.errors %}
+            <p class="alert alert-danger">Неверный логин или пароль</p>
+        {% endif %}
+        <br>
+        <div class="form-group">
+            <label for="{{ login_form.password.id_for_label }}">Пароль: </label>
+            {{ login_form.password }}
+        </div>
+        {% if login_form.password.errors %}
+            <p class="alert alert-danger">Неверный логин или пароль</p>
+        {% endif %}
+        <br>
+        <button class="btn btn-primary" type="submit">Войти</button>
+    </form>
+    <p class="text-center">Нет аккаунта? <a href="/register">Создать аккаунт</a>.</p>
 </div>
-
 {% endblock %}
+

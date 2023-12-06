@@ -9,7 +9,7 @@ from .models import Post
 
 
 class BlogListView(ListView):
-    paginate_by = 2
+    paginate_by = 3
     model = Post
     template_name = 'home.html'
 
@@ -18,8 +18,16 @@ class AboutPageView(TemplateView):
     template_name = 'about.html'
 
 
-class ImputationPageView(TemplateView):
-    template_name = 'imputation.html'
+class RecognitionPageView(TemplateView):
+    template_name = 'recognition.html'
+
+
+class PredictionPageView(TemplateView):
+    template_name = 'prediction.html'
+
+
+class ClassificationPageView(TemplateView):
+    template_name = 'classification.html'
 
 
 def register_request(request):
