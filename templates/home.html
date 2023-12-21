@@ -15,21 +15,39 @@
         </div>
 
     {% endfor %}
+    <br>
     <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; первая</a>
-                <a href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
-            {% endif %}
+  <ul class="pagination">
+    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+      {% if page_obj.has_previous %}
+        <a class="page-link" href="?page=1">&laquo; первая</a>
+      {% else %}
+        <span class="page-link">&laquo; первая</span>
+      {% endif %}
+    </li>
+    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+      {% if page_obj.has_previous %}
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
+      {% else %}
+        <span class="page-link">предыдущая</span>
+      {% endif %}
+    </li>
+    <li class="page-item"><span class="page-link">Страница {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
+    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+      {% if page_obj.has_next %}
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">следующая</a>
+      {% else %}
+        <span class="page-link">следующая</span>
+      {% endif %}
+    </li>
+    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+      {% if page_obj.has_next %}
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+      {% else %}
+        <span class="page-link">последняя &raquo;</span>
+      {% endif %}
+    </li>
+  </ul>
+</div>
 
-            <span class="current">
-                Страница {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">следующая</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
 {% endblock content %}

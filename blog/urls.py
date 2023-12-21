@@ -10,5 +10,6 @@ urlpatterns = [
     path('prediction/', PredictionPageView.as_view(), name='prediction'),
     path('classification/', ClassificationPageView.as_view(), name='classification'),
     path('register/', views.register_request, name="register"),
-    path('login/', views.login_request, name="login")
+    path('login/', views.login_request, name="login"),
+    path('logout/', views.logout_request, name="logout")
 ]
